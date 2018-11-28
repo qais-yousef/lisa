@@ -169,8 +169,8 @@ class CpusAnalysis(AnalysisModule):
                 if len(df):
                     # data = df[['capacity', 'tip_capacity', 'max_capacity']]
                     # data.plot(ax=axes, style=['m', 'y', 'r'],
-                    data = df[['capacity', 'tip_capacity']]
-                    data.plot(ax=axes, style=['m', '--y'],
+                    data = df[['capacity']]
+                    data.plot(ax=axes, style=['m'],
                               drawstyle='steps-post')
 
             # Add overutilized signal to the plot

@@ -102,6 +102,10 @@ class StatusAnalysis(AnalysisModule):
 
         # Otherwise: draw overutilized bands on top of the specified plot
         for (start, delta, overutilized) in bands:
+            if not isinstance(overutilized, int):
+                delta = delta.max()
+                overutilized = overutilized.max()
+
             if not overutilized:
                 continue
             end = start + delta

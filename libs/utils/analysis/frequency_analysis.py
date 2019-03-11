@@ -916,21 +916,14 @@ class FrequencyAnalysis(AnalysisModule):
             {label: residency_df.time.apply(lambda x: x*100/duration)},
             index=residency_df.index
         )
-        yrange = 3 * n_plots
-        residency_pct.T.plot.barh(ax=axes, stacked=True, figsize=(16, yrange))
+        residency_pct.T.plot.bar(ax=axes, stacked=True, figsize=(3, 16), colormap='PRGn')
 
-        axes.legend(loc='lower center', ncol=7)
-        axes.set_xlim(0, 100)
+        axes.legend(bbox_to_anchor=(1, 1))
+        axes.set_ylim(0, 100)
+        axes.set_ylabel("Residency %")
+        axes.set_xticklabels([])
+        axes.set_xlabel(label, rotation='horizontal')
         axes.grid(True)
-        if is_last:
-            axes.set_xlabel('Residency [%]')
-        else:
-            axes.set_xticklabels([])
-        if is_first:
-            legend_y = axes.get_ylim()[1]
-            axes.annotate('OPP {} Residency Time'.format(res_type),
-                          xy=(0, legend_y), xytext=(-50, 35),
-                          textcoords='offset points', fontsize=18)
 
     def _plotFrequencyResidency(self, residencies, entity_name, xmax,
                                 pct, active):
